@@ -1,0 +1,8 @@
+{	
+    "Config": {
+      "prefix": ["config"],
+      "body": ["<?=App::config('$1')?>"],
+      "description": "Enter the key under which the value in the configuration is located"
+    }
+  
+}

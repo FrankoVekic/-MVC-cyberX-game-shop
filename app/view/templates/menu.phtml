@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href=""><?=App::config('appName')?></a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                    <?php if(!Request::isAuthorized()): ?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>">Home</a></li>
+                    <?php else:?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>controlpanel/index">Home</a></li>
+                    <?php endif;?>
+                    <?php if(Request::isAuthorized()): ?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>direction/games">Games</a></li>
+                    <?php if(Request::isAdmin()): ?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>direction/admin">Admin</a></li>
+                    <?php endif; ?>
+                    <?php endif;?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>index/aboutus">About us</a></li>
+                    <?php if(!Request::isAuthorized()): ?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>index/login">Login</a></li>
+                    <?php else:?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>index/logout">Logout <?=Request::user()?></a></li>
+                    <?php endif;?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
