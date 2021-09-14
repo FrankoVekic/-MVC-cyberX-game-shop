@@ -2,7 +2,7 @@
 
 class DB extends PDO
 {
-    private static $instance = null;
+    private static $connect = null;
 
     private function __construct($database)
     {
@@ -12,12 +12,12 @@ class DB extends PDO
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
     }
 
-    public static function getInstance()
+    public static function connect()
     {   
         //when we are not connected to db
-        if(self::$instance==null){
-            self::$instance = new self(App::config('database'));
+        if(self::$connect==null){
+            self::$connect = new self(App::config('database'));
         }
-        return self::$instance;
+        return self::$connect;
     }
 }

@@ -9,10 +9,7 @@ class IndexController extends Controller
 
     public function aboutus()
     {
-        $this->view->render('aboutus',[
-            'name'=>'Franko',
-            'data' => [1,2,3,2,2,2,3]
-        ]);
+        $this->view->render('aboutus');
     }
 
     public function login()
@@ -95,14 +92,14 @@ class IndexController extends Controller
             $this->loginView($_POST['email'],'Password is required');
             return;
     }
-    $operater = Operater::authorize($_POST['email'],$_POST['password']);
-    if($operater == null){
+    $user = Operater::authorize($_POST['email'],$_POST['password']);
+    if($user == null){
         $this->loginView($_POST['email'],'Incorrect input.');
         return;
     }
 
     //here i know if the user is logged in
-    $_SESSION['authorized']=$operater;
+    $_SESSION['authorized']=$user;
     $cp = new ControlpanelController();
     $cp->index();
   }

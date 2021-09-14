@@ -5,8 +5,8 @@ class Request
     public static function getPath()
     {
         $paths = '/';
-        if(isset($_SERVER['REDIRECTION_PATH_INFO'])){
-            $paths =  $_SERVER['REDIRECTION_PATH_INFO'];
+        if(isset($_SERVER['REDIRECT_PATH_INFO'])){
+            $paths =  $_SERVER['REDIRECT_PATH_INFO'];
         }
         else if(isset($_SERVER['REQUEST_URI'])){
             $paths = $_SERVER['REQUEST_URI'];
