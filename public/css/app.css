@@ -7,3 +7,8 @@ body{
 footer{
     margin-top: auto;
 }
+
+.adminimg{
+    height: 120px;
+    width: 170px;
+}
