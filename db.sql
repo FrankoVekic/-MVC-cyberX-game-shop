@@ -10,7 +10,7 @@ description varchar(300),
 quantity int not null,
 memory_required int not null,
 console varchar(50) not null,
-image varchar(50) not null
+image varchar(50)
 );
 
 create table users (

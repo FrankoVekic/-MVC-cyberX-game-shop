@@ -1,0 +1,49 @@
+<div style="margin-top: 150px; margin-bottom:100px;">
+<form method="POST" action="<?=App::config('url')?>direction/newGame">
+  <div class="form-row">
+    <div class="form-group col-md-16">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="<?=$game->name?>" placeholder="Game name">
+    </div>
+    <div class="form-group col-md-16">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" id="price" value="<?=$game->price?>" name="price">
+    </div>
+  </div>
+  <div class="form-group col-md-16">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" value="<?=$game->description?>" name="description" placeholder="Enter game description">
+  </div>
+  <div class="form-group col-md-16">
+    <label for="quantity">Quantity</label>
+    <input type="text" class="form-control" id="quantity" value="<?=$game->quantity?>" name="quantity">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-16">
+      <label for="memory_required">Required Free Space</label>
+      <input type="text" class="form-control" id="memory_required" value="<?=$game->memory_required?>" name="memory_required">
+    </div>
+    <div class="form-group col-md-4" style="margin-top:20px;">
+        <fieldset>
+          <legend>Console</legend>
+          <input style="margin:2px;" type="radio"
+          <?php echo !$game->console ? 'checked="checked"' : '';?>
+          name="console" value="1" id="pc"><label for="pc">PC</label>
+
+          <input style="margin:2px;" type="radio" 
+          <?php echo !$game->console ? 'checked="checked"' : '';?> name="console" value="2" id="ps4"><label for="ps4">PS4</label>
+
+          <input style="margin:2px;" type="radio" checked="checked"
+          <?php echo $game->console ? 'checked="checked"' : ';'?> name="console" value="3" id="Both"><label for="both">Both</label>          
+        </fieldset>
+    </div>
+  </div>
+  <div style="margin-top:20px;">
+  <button type="submit" class="btn btn-primary">Add game</button>
+  <a href="<?=App::config('url')?>direction/admin" class="btn btn-danger">Go Back</a>
+  </div>
+  <div style="margin-top:10px">
+  <?=$message?>
+  </div>
+</form>
+</div>

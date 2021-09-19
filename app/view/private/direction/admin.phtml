@@ -34,8 +34,8 @@
                         <td><?=$game->console?></td>
                         <td><img class="adminimg" src="<?=App::config('url')?>public/img/<?=$game->image?>"></td>
                         <td>
-                            <a href="<?=App::config('url')?>direction/change?id=<?$game->id?>"> <i title="Change" class="fas fa-pencil-alt"></i></a>
-                            <a href="<?=App::config('url')?>direction/delete?id=<?$game->id?>"><i title="Delete" style="color:red; margin-left:20px;" class="fas fa-trash-alt"></i></a>
+                            <a href="<?=App::config('url')?>direction/change?id=<?=$game->id?>"> <i title="Change" class="fas fa-pencil-alt"></i></a>
+                            <a href="<?=App::config('url')?>direction/delete?id=<?=$game->id?>"><i title="Delete" style="color:red; margin-left:20px;" class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <?php endforeach;?>
