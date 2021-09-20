@@ -45,5 +45,5 @@ insert into users (email,password,name,surname,role) values
 ('oper@edunova.hr','$2y$10$WHV1bOXJTbMzrtZEIWO97.2ycbapSP0JweaAC1iP5luFC9wosSsk2','Operater','Edunova','oper');
 
 insert into games (name,price,quantity,memory_required,console,image,description) values 
-('Pokemon',39.99,10,40,'PC&PS4','pokemon.png','Gotta catch them all!'),
+('Pokemon',39.99,10,40,'Both','pokemon.png','Gotta catch them all!'),
 ('Spider-man',59.99,10,65,'PC','spiderman.jpg','Save the city with your favorite superhero!');

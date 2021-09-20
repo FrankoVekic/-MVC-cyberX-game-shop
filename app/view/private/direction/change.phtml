@@ -1,5 +1,5 @@
 <div style="margin-top: 150px; margin-bottom:100px;">
-<form method="POST" action="<?=App::config('url')?>direction/newGame">
+<form method="POST" action="<?=App::config('url')?>direction/update">
   <div class="form-row">
     <div class="form-group col-md-16">
       <label for="name">Name</label>
@@ -39,11 +39,12 @@
     </div>
   </div>
   <div style="margin-top:20px;">
-  <button type="submit" class="btn btn-primary">Add game</button>
+  <button type="submit" class="btn btn-primary">Update</button>
   <a href="<?=App::config('url')?>direction/admin" class="btn btn-danger">Go Back</a>
   </div>
   <div style="margin-top:10px">
   <?=$message?>
+  <input type="hidden" name="id" value="<?=$game->id?>">
   </div>
 </form>
 </div>

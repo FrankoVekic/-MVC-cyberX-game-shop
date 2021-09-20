@@ -22,7 +22,17 @@ class DirectionController extends AuthorizeController
 
     public function admin() 
     {
-        $this->view->render($this->viewDir . 'admin',['games'=>Games::read()]);
+        /*
+        $games = Games::read();
+        $nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
+        $nf->setPattern(",#.00 kn");
+            
+        foreach($games as $game){
+                $game->price = $nf->format($game->price);
+        }
+        */
+        $this->view->render($this->viewDir . 'admin',[
+            'games'=>Games::read()]);
     } 
 
     public function add()
@@ -79,7 +89,7 @@ class DirectionController extends AuthorizeController
             $this->message="Max number of letters is 30";
             return false;
         }
-        if(!preg_match("/^[a-zA-Z0-9]*$/" , $this->game->name)){
+        if(!preg_match("/[a-z0-9.]/i", $this->game->name)){
             $this->message="You can only write letters and numbers";
             return false;
         }
@@ -118,10 +128,6 @@ class DirectionController extends AuthorizeController
         }
         if(strlen(trim($this->game->description))>2000){
             $this->message="Max number of letters is 2000";
-            return false;
-        }
-        if(!preg_match("/^[a-zA-Z0-9]*$/" , $this->game->description)){
-            $this->message="You can only write letters and numbers";
             return false;
         }
         return true;
@@ -191,4 +197,45 @@ class DirectionController extends AuthorizeController
             $this->admin();
         }
     }
-}
+
+    public function change()
+    {
+        $this->game = Games::findGame($_GET['id']);
+        if($this->game==null){
+            $this->admin();
+        }else {
+        $this->view->render($this->viewDir . 'change',[
+            "game" =>$this->game,
+            'message'=>'Change game data'
+        ]);
+        }
+    }
+    public function update()
+    {
+        if(!$_POST){
+            $this->admin();
+            return;
+        }
+        
+        $this->game=(object)$_POST;
+        
+        if($this->nameControl() 
+        && $this->priceControl()
+        && $this->descControl() 
+        && $this->quanControl() 
+        && $this->memoryControl() 
+        && $this->consoleControl()
+        )
+        {
+            Games::update((array)($this->game));
+            $this->admin();
+        }
+        else 
+        {
+            $this->view->render($this->viewDir . 'admin',[
+                "game" =>$this->game,
+                'message'=>$this->message
+            ]);
+        }
+    }
+ }

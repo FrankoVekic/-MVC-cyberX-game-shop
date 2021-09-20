@@ -2,9 +2,15 @@
 
 class IndexController extends Controller
 {
+    
     public function index()
     {
+        if(Request::isAdmin()){
+            $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
+        }
+        else {
         $this->view->render('index');
+        }
     }
 
     public function aboutus()
