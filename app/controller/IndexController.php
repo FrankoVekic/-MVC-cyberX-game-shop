@@ -9,7 +9,7 @@ class IndexController extends Controller
             $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
         }
         else {
-        $this->view->render('index');
+            $this->view->render('index');
         }
     }
 
