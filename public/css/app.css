@@ -12,3 +12,14 @@ footer{
     height: 120px;
     width: 170px;
 }
+
+@media only screen and (min-width:986px){
+
+.smaller,img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    text-align: center;
+}
+}
