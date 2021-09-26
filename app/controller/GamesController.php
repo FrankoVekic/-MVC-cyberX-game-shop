@@ -1,80 +1,36 @@
 <?php 
 
-class DirectionController extends AuthorizeController
+class GamesController extends AuthorizeController
 {
+    private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'games' . DIRECTORY_SEPARATOR;
 
-    private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'direction' . DIRECTORY_SEPARATOR;
-
-    private $game;
+    private $games;
     private $message;
 
-    public function __construct()
+    public function index()
     {
-        parent::__construct();
-        $this->game = new stdClass();
-        $this->game->name="";
-        $this->game->price="0,00";
-        $this->game->description="";
-        $this->game->quantity="0";
-        $this->game->memory_required="0";
-        $this->game->console=false;
+        $this->view->render($this->viewDir . 'index',[
+            'games'=>Games::read()]);
     }
 
-    public function admin() 
+    public function cart()
     {
-        /*
-        $games = Games::read();
-        $nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
-        $nf->setPattern(",#.00 kn");
-            
-        foreach($games as $game){
-                $game->price = $nf->format($game->price);
-        }
-        */
-        $this->view->render($this->viewDir . 'admin',[
-            'games'=>Games::readAdmin()]);
-    } 
+        $this->view->render($this->viewDir . 'cart');
+    }
+    
 
-    public function add()
+    public function change()
     {
-        $this->view->render($this->viewDir . 'new',[
+        $this->game = Games::findGame($_GET['id']);
+        if($this->game==null){
+            $this->index();
+        }else {
+        $this->view->render($this->viewDir . 'change',[
             "game" =>$this->game,
-            'message'=>'Enter required data.'
+            'message'=>'Change game data'
         ]);
-    }
-
-    public function newGame()
-    {
-        if(!$_POST){
-            $this->add();
-            return;
-        }
-
-        $this->game=(object)$_POST;
-
-
-        if($this->nameControl() 
-        && $this->priceControl()
-        && $this->descControl() 
-        && $this->quanControl() 
-        && $this->memoryControl() 
-        && $this->consoleControl()
-        )
-        {
-            $this->game->price = str_replace(array('.', ','), array('', '.'), 
-            $this->game->price);
-            Games::create((array)($this->game));
-            $this->admin();
-        }
-        else 
-        {
-            $this->view->render($this->viewDir . 'new',[
-                "game" =>$this->game,
-                'message'=>$this->message
-            ]);
         }
     }
-
     private function nameControl()
     {
         if(!isset($this->game->name)){
@@ -181,33 +137,10 @@ class DirectionController extends AuthorizeController
         }
         return true;
     }
-    public function delete()
-    {
-        if(!isset($_GET['id'])){
-            $this->admin();
-        }else {
-            $id = $_GET['id'];
-            Games::delete($id);
-            $this->admin();
-        }
-    }
-
-    public function change()
-    {
-        $this->game = Games::findGame($_GET['id']);
-        if($this->game==null){
-            $this->admin();
-        }else {
-        $this->view->render($this->viewDir . 'change',[
-            "game" =>$this->game,
-            'message'=>'Change game data'
-        ]);
-        }
-    }
     public function update()
     {
         if(!$_POST){
-            $this->admin();
+            $this->index();
             return;
         }
         
@@ -222,7 +155,7 @@ class DirectionController extends AuthorizeController
         )
         {
             Games::update((array)($this->game));
-            $this->admin();
+            $this->index();
         }
         else 
         {
@@ -232,4 +165,4 @@ class DirectionController extends AuthorizeController
             ]);
         }
     }
- }
+}

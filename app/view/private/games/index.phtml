@@ -1,0 +1,28 @@
+      <div style="margin-top: 150px; margin-bottom:100px;" class="album py-5">
+        <div class="container">
+          <div class="row">
+          <?php foreach($games as $game):?>
+            <div class="col-md-4">
+            <h3><?=$game->name?></h3>
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="<?=App::config('url')?>public/img/buy/<?=$game->image?>" alt="Card image cap">
+                <div class="card-body">
+                <p class="card-text">Price: <?=$game->price?>$</p>
+                <p class="card-text">Console: <?=$game->console?></p>
+                <p class="card-text">Memory required: <?=$game->memory_required?> GB</p>
+                  <p class="card-text"><?=$game->description?></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <button type="button" name="add" class="btn btn-primary">Add to Cart</button>
+                      <?php if(Request::isAdmin()): ?>
+                      <a href="<?=App::config('url')?>games/change?id=<?=$game->id?>"> <i title="Change" class="fas fa-2x fa-pencil-alt"></i></a>
+                      <?php endif;?>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach;?>
+            </div>
+              </div>
+            </div>
+

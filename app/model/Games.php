@@ -16,7 +16,16 @@ class Games
     public static function read()
     {
         $conn = DB::connect();
-        $query = $conn->prepare('select * from games');
+        $query = $conn->prepare('select * from games where id > 4');
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    //Get only first 3 games from DB for user to edit.
+    public static function readAdmin()
+    {
+        $conn = DB::connect();
+        $query = $conn->prepare('select * from games where id < 5;');
         $query->execute();
         
         return $query->fetchAll();

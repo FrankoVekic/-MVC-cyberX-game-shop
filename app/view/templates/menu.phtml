@@ -17,7 +17,8 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>controlpanel/index">Home</a></li>
                     <?php endif;?>
                     <?php if(Request::isAuthorized()): ?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>direction/games">Games</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>games/index">Games</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>games/cart">Cart</a></li>
                     <?php if(Request::isAdmin()): ?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?=App::config('url')?>direction/admin">Admin</a></li>
                     <?php endif; ?>

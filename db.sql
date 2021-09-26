@@ -46,4 +46,24 @@ insert into users (email,password,name,surname,role) values
 
 insert into games (name,price,quantity,memory_required,console,image,description) values 
 ('Pokemon',39.99,10,40,'Both','pokemon.png','Gotta catch them all!'),
-('Spider-man',59.99,10,65,'PC','spiderman.jpg','Save the city with your favorite superhero!');
+('Spider-man',59.99,10,65,'PC','spiderman.jpg','Save the city with your favorite superhero!'),
+('Biomutant',39.99,10,50,'PC','biomutant.jpg','Biomutant is an action role-playing game developed 
+by Swedish developer Experiment 101 and published by THQ Nordic. The game was released on 25 May 2021
+ for Microsoft Windows.'),
+ ('Far Cry 6',49.99,10,65,'Both','fc6.png','Far Cry 6 is an upcoming first-person shooter game developed by 
+Ubisoft Toronto and published by Ubisoft. It is the sixth main installment of the Far Cry series for Amazon Luna,
+ Microsoft Windows.'),
+ ('Battlefield V',69.99,10,70,'Both','bf5.jpg','Battlefield V is a first-person shooter video game developed 
+by DICE and published by Electronic Arts.It was released worldwide for Microsoft Windows.'),
+('Days Gone',49.99,10,60,'Both','daysgone.jpg','Days Gone is a 2019 action-adventure survival horror video
+ game developed by Bend Studio and published by Sony Interactive Entertainment.'),
+ ('Dying Light 2',59.99,10,57,'Both','dyinglight.jpg','Dying Light 2 Stay Human is an upcoming survival horror 
+action role-playing game developed by Techland.'),
+ ('The Medium',49.99,10,60,'PC','medium.jpg','The Medium is a psychological horror video game developed
+by Bloober Team. It was released for Microsoft Windows on January 28, 2021 and was released for
+ PlayStation 4 on September 3, 2021'),
+ ('Scorn',59.99,10,50,'Both','scorn.jpg','Scorn is an upcoming first-person survival horror adventure video game developed
+ by Ebb Software for Microsoft Windows. The game is directly inspired by the works of H. R. Giger and Zdzisław Beksiński'),
+ ('Halo Infinite',69.99,10,70,'PC','haloinfinite.jpg','Halo Infinite is a first-person shooter game developed by 343 Industries 
+and published by Xbox Game Studios for Microsoft Windows.'),
+('Vampyr',59.99,10,55,'PC','vampyr.jpg','Vampyr is an action role-playing video game developed by Dontnod Entertainment and published by Focus Home Interactive. It was released for Microsoft Windows and PlayStation 4.');

@@ -28,10 +28,23 @@ class App
         else {
             $method = ucfirst($parts[2]);
         }
+        $id= 0;
+        $id = ''; 
+        if(!isset($parts[3]) || $parts[3] == ''){
+            $id=0;
+        }
+        else {
+            $id=$parts[3];
+        }
+
         //echo $class . '->' . $method;
         if(class_exists($class) && method_exists($class,$method)){
             $instance = new $class();
-            $instance->$method();
+            if($id==0){
+                $instance->$method();
+            }else {
+                $instance->$method($id);
+            }
         }
         else {
             //error page
