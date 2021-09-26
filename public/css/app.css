@@ -8,11 +8,6 @@ footer{
     margin-top: auto;
 }
 
-.adminimg{
-    height: 120px;
-    width: 170px;
-}
-
 @media only screen and (min-width:986px){
 
 .smaller,img{
@@ -63,3 +58,13 @@ footer{
   :root {
     --jumbotron-padding-y: 3rem;
   }
+  .adminimg{
+    height: 120px;
+    width: 170px;
+}
+.games-img{
+  height: 90%;
+  width: 100%;
+}
+
+  

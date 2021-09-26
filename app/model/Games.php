@@ -7,8 +7,8 @@ class Games
     {
         $conn=DB::connect();
         $query = $conn->prepare("
-        insert into games(name,price,description,quantity,memory_required,console)
-        values (:name,:price,:description,:quantity,:memory_required,:console);
+        insert into games(name,price,description,quantity,memory_required,console,image)
+        values (:name,:price,:description,:quantity,:memory_required,:console,'noimg.png');
         ");
         $query->execute($params);
     }
@@ -16,7 +16,7 @@ class Games
     public static function read()
     {
         $conn = DB::connect();
-        $query = $conn->prepare('select * from games where id > 4');
+        $query = $conn->prepare('select * from games');
         $query->execute();
         
         return $query->fetchAll();
@@ -25,7 +25,7 @@ class Games
     public static function readAdmin()
     {
         $conn = DB::connect();
-        $query = $conn->prepare('select * from games where id < 5;');
+        $query = $conn->prepare('select * from games');
         $query->execute();
         
         return $query->fetchAll();

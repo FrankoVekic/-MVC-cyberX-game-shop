@@ -2,7 +2,7 @@
     <div style="margin-top:150px; margin-bottom:200px;">
         <div class="grix-x">
             <div class="cell large-6">
-                <h1 style="font-size: 2rem; text-align:center;">ORDER GAMES</h1>
+                <h1 style="font-size: 2rem; text-align:center;">CHANGE YOUR GAME COLLECTION</h1>
             </div>
         <div class="cell large-6" style="text-align:right; margin-top:20px;">
         <a href="<?=App::config('url')?>direction/add" class="btn btn-primary">
@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th >Price</th>
+                    <th>Price</th>
                     <th>Descripton</th>
                     <th>Quantity</th>
                     <th>Required Memory</th>
@@ -36,7 +36,7 @@
                         <td>
                             <a href="<?=App::config('url')?>direction/change?id=<?=$game->id?>"> <i title="Change" class="fas fa-pencil-alt"></i></a>
                             <a onclick="return confirm('Are you sure you want to delete &#34;<?=$game->name?>&#34;?');"
-                             href="<?=App::config('url')?>direction/delete?id=<?=$game->id?>"><i title="Delete" style="color:red; margin-left:20px;" class="fas fa-trash-alt"></i></a>
+                             href="<?=App::config('url')?>direction/delete?id=<?=$game->id?>"><i title="Delete" style="color:red; margin-left:10px;" class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <?php endforeach;?>

@@ -45,12 +45,12 @@ insert into users (email,password,name,surname,role) values
 ('oper@edunova.hr','$2y$10$WHV1bOXJTbMzrtZEIWO97.2ycbapSP0JweaAC1iP5luFC9wosSsk2','Operater','Edunova','oper');
 
 insert into games (name,price,quantity,memory_required,console,image,description) values 
-('Pokemon',39.99,10,40,'Both','pokemon.png','Gotta catch them all!'),
+('Pokemon',39.99,10,40,'Both','pokemon.jpg','Gotta catch them all!'),
 ('Spider-man',59.99,10,65,'PC','spiderman.jpg','Save the city with your favorite superhero!'),
 ('Biomutant',39.99,10,50,'PC','biomutant.jpg','Biomutant is an action role-playing game developed 
 by Swedish developer Experiment 101 and published by THQ Nordic. The game was released on 25 May 2021
  for Microsoft Windows.'),
- ('Far Cry 6',49.99,10,65,'Both','fc6.png','Far Cry 6 is an upcoming first-person shooter game developed by 
+ ('Far Cry 6',49.99,10,65,'Both','fc6.jpg','Far Cry 6 is an upcoming first-person shooter game developed by 
 Ubisoft Toronto and published by Ubisoft. It is the sixth main installment of the Far Cry series for Amazon Luna,
  Microsoft Windows.'),
  ('Battlefield V',69.99,10,70,'Both','bf5.jpg','Battlefield V is a first-person shooter video game developed 
