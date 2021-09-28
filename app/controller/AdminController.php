@@ -1,9 +1,9 @@
 <?php 
 
-class DirectionController extends AuthorizeController
+class AdminController extends AuthorizeController
 {
 
-    private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'direction' . DIRECTORY_SEPARATOR;
+    private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR;
 
     private $game;
     private $message;
@@ -20,7 +20,7 @@ class DirectionController extends AuthorizeController
         $this->game->console=false;
     }
 
-    public function admin() 
+    public function index() 
     {
         /*
         $games = Games::read();
@@ -31,7 +31,7 @@ class DirectionController extends AuthorizeController
                 $game->price = $nf->format($game->price);
         }
         */
-        $this->view->render($this->viewDir . 'admin',[
+        $this->view->render($this->viewDir . 'index',[
             'games'=>Games::readAdmin()]);
     } 
 
@@ -64,7 +64,7 @@ class DirectionController extends AuthorizeController
             $this->game->price = str_replace(array('.', ','), array('', '.'), 
             $this->game->price);
             Games::create((array)($this->game));
-            $this->admin();
+            $this->index();
         }
         else 
         {
@@ -184,11 +184,11 @@ class DirectionController extends AuthorizeController
     public function delete()
     {
         if(!isset($_GET['id'])){
-            $this->admin();
+            $this->index();
         }else {
             $id = $_GET['id'];
             Games::delete($id);
-            $this->admin();
+            $this->index();
         }
     }
 
@@ -196,7 +196,7 @@ class DirectionController extends AuthorizeController
     {
         $this->game = Games::findGame($_GET['id']);
         if($this->game==null){
-            $this->admin();
+            $this->index();
         }else {
         $this->view->render($this->viewDir . 'change',[
             "game" =>$this->game,
@@ -207,7 +207,7 @@ class DirectionController extends AuthorizeController
     public function update()
     {
         if(!$_POST){
-            $this->admin();
+            $this->index();
             return;
         }
         
@@ -222,11 +222,11 @@ class DirectionController extends AuthorizeController
         )
         {
             Games::update((array)($this->game));
-            $this->admin();
+            $this->index();
         }
         else 
         {
-            $this->view->render($this->viewDir . 'admin',[
+            $this->view->render($this->viewDir . 'index',[
                 "game" =>$this->game,
                 'message'=>$this->message
             ]);

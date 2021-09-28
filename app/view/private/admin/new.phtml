@@ -5,9 +5,9 @@
               <div class="card">
                 <div class="card-header">Login</div>
                   <div class="card-body">
-                <form method="POST" action="<?=App::config('url')?>direction/update">
-                <div class="form-row">
-                <div class="form-group col-md-16">
+                    <form method="POST" action="<?=App::config('url')?>admin/newGame">
+                      <div class="form-row">
+                    <div class="form-group col-md-16">
                   <label for="name">Name</label>
                   <input type="text" class="form-control" id="name" name="name" value="<?=$game->name?>" placeholder="Game name">
                 </div>
@@ -45,12 +45,11 @@
                 </div>
               </div>
               <div style="margin-top:20px;">
-              <button type="submit" class="btn btn-primary">Update</button>
-              <a href="<?=App::config('url')?>direction/admin" class="btn btn-danger">Go Back</a>
+              <button type="submit" class="btn btn-primary">Add game</button>
+              <a href="<?=App::config('url')?>admin/index" class="btn btn-danger">Go Back</a>
               </div>
               <div style="margin-top:10px">
               <?=$message?>
-              <input type="hidden" name="id" value="<?=$game->id?>">
               </div>
             </form>
           </div>
