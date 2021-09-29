@@ -66,4 +66,25 @@ by Bloober Team. It was released for Microsoft Windows on January 28, 2021 and w
  by Ebb Software for Microsoft Windows. The game is directly inspired by the works of H. R. Giger and Zdzisław Beksiński'),
  ('Halo Infinite',69.99,10,70,'PC','haloinfinite.jpg','Halo Infinite is a first-person shooter game developed by 343 Industries 
 and published by Xbox Game Studios for Microsoft Windows.'),
-('Vampyr',59.99,10,55,'PC','vampyr.jpg','Vampyr is an action role-playing video game developed by Dontnod Entertainment and published by Focus Home Interactive. It was released for Microsoft Windows and PlayStation 4.');
+('Vampyr',59.99,10,55,'PC','vampyr.jpg','Vampyr is an action role-playing video game developed by Dontnod Entertainment and 
+published by Focus Home Interactive. It was released for Microsoft Windows and PlayStation 4.'),
+("Marvel's Avengers",60.00,10,63,'Both','avengers.jpg',"arvel's Avengers is a 2020 action role-playing brawler video game developed by
+ Crystal Dynamics and published by Square Enix's European subsidiary"),
+('Dota 2',29.99,10,45,'PC','dota2.jpg',"Dota 2 is a multiplayer online battle arena video game developed and published by Valve. 
+The game is a sequel to Defense of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III: Reign of Chaos."),
+("Assassin's Creed Odyssey",60,10,70,'Both','acody.jpg',"Assassin's Creed Odyssey is an action role-playing video game developed by Ubisoft Quebec 
+and published by Ubisoft. It is the eleventh major installment in the Assassin's Creed series and the successor to 2017's Assassin's Creed Origins."),
+("Cyberpunk 2077",70,10,80,'PC','cyberpunk.jpg',"Cyberpunk 2077 is an action role-playing video game developed and published by CD Projekt. 
+The story takes place in Night City, an open world set in the Cyberpunk universe."),
+("Grand Theft Auto V",71.99,10,74,'PS4','gtav.jpg',"Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by
+ Rockstar Games. It is the seventh main entry in the Grand Theft Auto series, following 2008's Grand Theft Auto IV, and the fifteenth instalment overall."),
+("Mount & Blade II",59.99,10,58,'PC','mbb.jpg',"Mount & Blade II: Bannerlord is a strategy action role-playing video game developed and published 
+by TaleWorlds Entertainment. It is a prequel to Mount & Blade: Warband, a stand-alone expansion for the 2008 game Mount & Blade."),
+('Mass Effect 3',69.99,10,63,'PC','mef.jpg',"Mass Effect Legendary Edition is a compilation of the video games in the Mass Effect trilogy: 
+Mass Effect, Mass Effect 2, and Mass Effect 3.");
+
+
+
+
+
+
