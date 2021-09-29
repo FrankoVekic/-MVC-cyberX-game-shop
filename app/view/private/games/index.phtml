@@ -1,5 +1,6 @@
       <div style="margin-top: 150px; margin-bottom:100px;" class="album py-5">
-        <div class="container">
+      <div class="container">
+      <?php include 'paging.phtml' ?>
           <div class="row">
           <?php foreach($games as $game):?>
             <div class="col-md-4">
@@ -23,6 +24,7 @@
             </div>
             <?php endforeach;?>
             </div>
-              </div>
-            </div>
+            <?php include 'paging.phtml' ?>
+          </div>
+        </div>
 

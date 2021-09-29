@@ -2,6 +2,17 @@
 
 class Games 
 {
+
+    public static function gameCount()
+    {
+        $conn = DB::connect();
+        $query = $conn->prepare(
+            'select count(id) from games;'
+        );
+        
+        $query->execute();
+        return $query->fetchColumn();
+    }
     //CRUD - C
     public static function create($params)
     {
@@ -13,12 +24,17 @@ class Games
         $query->execute($params);
     }
     //CRUD - R
-    public static function read()
+    public static function read($page)
     {
+        $dpp = App::config('dpp');
+        $from = $page * $dpp - $dpp;
         $conn = DB::connect();
-        $query = $conn->prepare('select * from games');
+        $query = $conn->prepare('select * from games limit :from,:dpp;');
+
+        $query->bindValue('from',$from, PDO::PARAM_INT);
+        $query->bindValue('dpp',$dpp, PDO::PARAM_INT);
+
         $query->execute();
-        
         return $query->fetchAll();
     }
     //Get only first 3 games from DB for user to edit.

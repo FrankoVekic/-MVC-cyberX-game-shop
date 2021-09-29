@@ -24,5 +24,6 @@ return [
     'dev' => $dev,
     'appName' => 'CyberX Games',
     'url' => $url,
-    'database'=>$database
+    'database'=>$database,
+    'dpp'=>6
 ];

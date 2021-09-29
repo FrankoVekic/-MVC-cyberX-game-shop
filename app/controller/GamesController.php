@@ -9,8 +9,28 @@ class GamesController extends AuthorizeController
 
     public function index()
     {
+        if(!isset($_GET['page'])){
+            $page=1;
+        }
+        else {
+            $page=(int)$_GET['page'];
+        }
+        if($page===0){
+            $page=1;
+        }
+
+        $gameCount = Games::gameCount();
+        $pageCount = ceil($gameCount/App::config('dpp'));
+        
+        if($page>$pageCount){
+            $page=$pageCount;
+        }
+        
         $this->view->render($this->viewDir . 'index',[
-            'games'=>Games::read()]);
+            'games'=>Games::read($page),
+            'page'=>$page,
+            'pageCount'=>$pageCount
+        ]);
     }
 
     public function cart()
