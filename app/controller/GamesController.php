@@ -15,9 +15,7 @@ class GamesController extends AuthorizeController
         else {
             $page=(int)$_GET['page'];
         }
-        if($page===0){
-            $page=1;
-        }
+        
 
         if(!isset($_GET['search'])){
             $search='';
@@ -30,6 +28,9 @@ class GamesController extends AuthorizeController
         
         if($page>$pageCount){
             $page=$pageCount;
+        }
+        if($page==0){
+            $page=1;
         }
         
         $this->view->render($this->viewDir . 'index',[
