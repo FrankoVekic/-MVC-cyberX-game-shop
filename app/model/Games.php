@@ -3,13 +3,16 @@
 class Games 
 {
 
-    public static function gameCount()
+    public static function gameCount($search)
     {
         $conn = DB::connect();
         $query = $conn->prepare(
-            'select count(id) from games;'
+            'select count(id) from games a 
+            where name like :search;'
         );
         
+        $search = '%' . $search . '%';
+        $query->bindParam('search',$search);
         $query->execute();
         return $query->fetchColumn();
     }
@@ -24,16 +27,18 @@ class Games
         $query->execute($params);
     }
     //CRUD - R
-    public static function read($page)
+    public static function read($page,$search)
     {
         $dpp = App::config('dpp');
         $from = $page * $dpp - $dpp;
         $conn = DB::connect();
-        $query = $conn->prepare('select * from games limit :from,:dpp;');
+        $query = $conn->prepare('select * from games where name like :search limit :from,:dpp;');
 
+        $search = '%' . $search . '%';
         $query->bindValue('from',$from, PDO::PARAM_INT);
         $query->bindValue('dpp',$dpp, PDO::PARAM_INT);
 
+        $query->bindParam('search',$search);
         $query->execute();
         return $query->fetchAll();
     }

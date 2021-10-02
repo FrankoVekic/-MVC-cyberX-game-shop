@@ -19,7 +19,13 @@ class GamesController extends AuthorizeController
             $page=1;
         }
 
-        $gameCount = Games::gameCount();
+        if(!isset($_GET['search'])){
+            $search='';
+        }else {
+            $search = $_GET['search'];
+        }
+
+        $gameCount = Games::gameCount($search);
         $pageCount = ceil($gameCount/App::config('dpp'));
         
         if($page>$pageCount){
@@ -27,8 +33,9 @@ class GamesController extends AuthorizeController
         }
         
         $this->view->render($this->viewDir . 'index',[
-            'games'=>Games::read($page),
+            'games'=>Games::read($page,$search),
             'page'=>$page,
+            'search'=>$search,
             'pageCount'=>$pageCount
         ]);
     }

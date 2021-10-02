@@ -1,6 +1,12 @@
       <div style="margin-top: 150px; margin-bottom:100px;" class="album py-5">
       <div class="container">
           <div class="row">
+          <div class="form-outline" style="margin-bottom: 30px;">
+            <form action="<?=App::config('url')?>games/index">
+            <input style="text-align: center;" type="text" name="search" id="search" class="form-control" 
+            placeholder="What are you searching for?" value="<?=$search?>"/>
+            </form>
+          </div>
           <?php include 'paging.phtml' ?>
           <?php foreach($games as $game):?>
             <div class="col-md-4">

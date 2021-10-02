@@ -82,9 +82,3 @@ The story takes place in Night City, an open world set in the Cyberpunk universe
 by TaleWorlds Entertainment. It is a prequel to Mount & Blade: Warband, a stand-alone expansion for the 2008 game Mount & Blade."),
 ('Mass Effect 3',69.99,10,63,'PC','mef.jpg',"Mass Effect Legendary Edition is a compilation of the video games in the Mass Effect trilogy: 
 Mass Effect, Mass Effect 2, and Mass Effect 3.");
-
-
-
-
-
-
