@@ -2,10 +2,9 @@
     <div style="margin-top:150px; margin-bottom:200px;">
         <div class="grix-x">
             <div class="cell large-6">
-                <h1 style="font-size: 2rem; text-align:center;"><?=$message?></h1>
+                <h1 style="font-size: 2rem; text-align:center;">Your Shopping Cart</h1>
             </div>
         </div>
-        <?php if(!empty($_SESSION['cart'])): ?>
         <table class="table table-bordered" style="margin-top:15px;">
             <thead>
                 <tr>
@@ -20,24 +19,23 @@
                 </tr>
             </thead>
             <tbody>
-                
                 <?php foreach($_SESSION['cart'] as $game=>$value):?>
                     <tr>
                     <td><img class="adminimg" src="<?=App::config('url')?>public/img/order/<?=$value['image']?>"></td>
                         <td style="min-width:150px;"><?=$value['name']?></td>
-                        <td style="text-align: right;min-width:150px; text-align:center"><?=$value['price']?>$</td>
+                        <td style="text-align: center; min-width:150px;"><?=$value['price']?>$</td>
                         <td><?=$value['description']?></td>
-                        <td style="min-width:140px; text-align:center;"><?=$value['quantity']?></td>
+                        <form>
+                        <td><input style="max-width:129px;" type="number" value="<?=$value['quantity']?>" min="1" max="<?$value['quantity']?>"></td>
+                        </form>
                         <td style="text-align:center"><?=$value['memory_required']?> GB</td>
                         <td style="text-align:center"><?=$value['console']?></td>
                         <td style="min-width:80px; text-align:center">
-                            <a href="<?=App::config('url')?>games/updateCart"> <i title="Update" class="fas fa-pencil-alt"></i></a>
-                            <a onclick="return confirm('Are you sure you want to remove &#34;<?=$value['name']?>&#34; from the cart?');"
-                             href="<?=App::config('url')?>games/remove?id=<?=$value['id']?>"><i title="Remove" style="color:red; margin-left:10px;" class="fas fa-trash-alt"></i></a>
+                            <a href="<?=App::config('url')?>games/set?id=<?=$value['id']?>"> <i title="Set" class="fa fa-floppy-o"></i></a>
+                            <a href="<?=App::config('url')?>games/cart"><i title="Back" style="color:red; margin-left:10px;" class="fa fa-undo"></i></a>
                         </td>
                     </tr>
                     <?php endforeach;?>
-                    
                     <tr>
                             <td style="text-align:center;"><a class="btn btn-success" href="<?=App::config('url')?>games/checkout">Checkout</a></td>
                             <td style="text-align:center;"><a class="btn btn-danger" onclick="return confirm('Are you sure you want to clear the cart?');" href="<?=App::config('url')?>games/clear">Clear</a></td>
@@ -47,6 +45,5 @@
                     </tr>
             </tbody>
         </table>
-        <?php endif;?>
     </div>
 </div>

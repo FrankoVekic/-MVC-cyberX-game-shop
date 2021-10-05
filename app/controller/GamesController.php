@@ -43,41 +43,77 @@ class GamesController extends AuthorizeController
 
     public function cart()
     {
-        $this->view->render($this->viewDir . 'cart');
+        if(empty($_SESSION['cart'])){
+            $this->view->render($this->viewDir . 'cart',[
+                'message'=>'Cart is empty.'
+            ]);
+        }
+        else if(!empty($_SESSION['cart'])) {
+        $this->view->render($this->viewDir . 'cart',[
+            'message'=>'Your Shopping Cart'
+        ]);
     }
-    /*
+}
+    
     public function add()
     {
-        if(isset($_POST['add'])){
-            if(isset($_SESSION['shopping_cart'])){
-              $game_array_id = array_column($_SESSION['shopping_cart'],'game_id');
-              if(!in_array($_GET['id'],$game_array_id)){
-                $get = count($_SESSION['shopping_cart']);
-                $game_array = array(
-                'game_id' => $_GET['id'],
-                'game_name' => $_POST['hidden_name'],
-                'game_price' => $_POST['hidden_price'],
-                'game_quantity' => $_POST['quantity'],
-                'game_image' => $_POST['hidden_image'],
-                'game_console' => $_POST['hidden_console']
-                );
-                $_SESSION["shopping_cart"][$get] = $game_array;
-              }
-            }
-            else {
-              $game_array = array(
-                'game_id' => $_GET['id'],
-                'game_name' => $_POST['hidden_name'],
-                'game_price' => $_POST['hidden_price'],
-                'game_quantity' => $_POST['quantity'],
-                'game_image' => $_POST['hidden_image'],
-                'game_console' => $_POST['hidden_console']
-              );
-              $_SESSION['shopping_cart'][0] = $game_array;
+        
+        if(isset($_POST['id'])){
+
+            $game = Games::findGame($_POST['id']);
+            
+            if(isset($_SESSION['cart'])){
+           
+            $game_id = array_column($_SESSION['cart'],'id');
+           
+                if(!in_array($_POST['id'],$game_id)){
+                     $count = count($_SESSION['cart']);
+
+                    $_SESSION['cart'][$count] = [
+                        'id'=>$_POST['id'],
+                        'name'=>$game->name,
+                        'price'=>$game->price,
+                        'description'=>$game->description,
+                        'memory_required'=>$game->memory_required,
+                        'quantity'=> $_POST['quantity'],
+                        'console'=>$game->console,
+                        'image'=>$game->image
+                    ];
+                $this->view->render($this->viewDir . 'cart',[
+                    'message'=>'Your Shopping Cart'
+        
+                ]);
+            }else {
+                for($i=0;$i<count($game_id); $i++){
+                    if($game_id[$i] == $_POST['id']){
+                        $_SESSION['cart'][$i]['quantity'] += $_POST['quantity'];
+                    }
+                    $this->view->render($this->viewDir . 'cart',[
+                        'message'=>'Your Shopping Cart'
+                    ]);
+                }
             }
         }
+        else {
+            $game_array = [
+                'id'=>$_POST['id'],
+                'name'=>$game->name,
+                'price'=>$game->price,
+                'description'=>$game->description,
+                'quantity'=> $_POST['quantity'],
+                'memory_required'=>$game->memory_required,
+                'console'=>$game->console,
+                'image'=>$game->image
+            ];
+            $_SESSION['cart'][0] = $game_array;
+
+            $this->cart();
+        }
     }
-    */
+    else {
+        $this->cart();
+    }
+}
 
     public function change()
     {
@@ -197,6 +233,14 @@ class GamesController extends AuthorizeController
         }
         return true;
     }
+    public function updateCart()
+    {
+        $this->view->render($this->viewDir . 'update');
+    }
+    public function set()
+    {
+
+    }
     public function update()
     {
         if(!$_POST){
@@ -225,4 +269,19 @@ class GamesController extends AuthorizeController
             ]);
         }
     }
-}
+    public function remove()
+    {
+           foreach($_SESSION['cart'] as $game=>$value){
+               if($value['id'] == $_GET['id']){
+                   unset($_SESSION['cart'][$game]);
+                   $this->cart();
+               } 
+            }
+            $_SESSION['cart'] = array_values($_SESSION['cart']);
+        }
+        public function clear()
+        {
+            unset($_SESSION['cart']);
+            $this->cart();
+        }
+    }
