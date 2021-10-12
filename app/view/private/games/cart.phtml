@@ -6,6 +6,7 @@
             </div>
         </div>
         <?php if(!empty($_SESSION['cart'])): ?>
+        <?php $total=0;?>
         <table class="table table-bordered" style="margin-top:15px;">
             <thead>
                 <tr>
@@ -36,13 +37,14 @@
                              href="<?=App::config('url')?>games/remove?id=<?=$value['id']?>"><i title="Remove" style="color:red; margin-left:10px;" class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
+                    <?php $total = $total + $value['quantity'] * $value['price']; ?>
                     <?php endforeach;?>
                     
                     <tr>
                             <td style="text-align:center;"><a class="btn btn-success" href="<?=App::config('url')?>games/checkout">Checkout</a></td>
                             <td style="text-align:center;"><a class="btn btn-danger" onclick="return confirm('Are you sure you want to clear the cart?');" href="<?=App::config('url')?>games/clear">Clear</a></td>
                             <td colspan="5" align="right">Total</td>
-                            <td style="min-width:100px;" class="total" colspan="2"><b>$ 163.47</b>
+                            <td style="min-width:100px;" class="total" colspan="2"><b><?=$total?>$</b>
                             </td>
                     </tr>
             </tbody>

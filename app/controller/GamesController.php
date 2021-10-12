@@ -76,12 +76,12 @@ class GamesController extends AuthorizeController
                         'description'=>$game->description,
                         'memory_required'=>$game->memory_required,
                         'quantity'=> $_POST['quantity'],
+                        'maxquan'=>$game->quantity,
                         'console'=>$game->console,
                         'image'=>$game->image
                     ];
                 $this->view->render($this->viewDir . 'cart',[
                     'message'=>'Your Shopping Cart'
-        
                 ]);
             }else {
                 for($i=0;$i<count($game_id); $i++){
@@ -101,6 +101,7 @@ class GamesController extends AuthorizeController
                 'price'=>$game->price,
                 'description'=>$game->description,
                 'quantity'=> $_POST['quantity'],
+                'maxquan'=>$game->quantity,
                 'memory_required'=>$game->memory_required,
                 'console'=>$game->console,
                 'image'=>$game->image
@@ -239,6 +240,28 @@ class GamesController extends AuthorizeController
     }
     public function set()
     {
+        if(!isset($_GET['id'])){
+            $this->cart();
+            return;
+        }
+        else {
+            if($_POST['newquan'] =='' || !is_numeric($_POST['newquan'])){
+                $quan=1;
+            foreach($_SESSION['cart'] as $games => $value){
+                if($value['id'] == $_GET['id']){
+                    $_SESSION['cart'][$games]['quantity']=$quan;
+                    $this->cart();
+                    }
+                }
+            }else {
+                foreach($_SESSION['cart'] as $games => $value){
+                    if($value['id'] == $_GET['id']){
+                        $_SESSION['cart'][$games]['quantity']=$_POST['newquan'];
+                        $this->cart();
+                }
+            }
+        }
+    }
 
     }
     public function update()

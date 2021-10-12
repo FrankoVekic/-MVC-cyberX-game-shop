@@ -19,29 +19,31 @@
                 </tr>
             </thead>
             <tbody>
+                <?php $total=0;?>
                 <?php foreach($_SESSION['cart'] as $game=>$value):?>
                     <tr>
                     <td><img class="adminimg" src="<?=App::config('url')?>public/img/order/<?=$value['image']?>"></td>
                         <td style="min-width:150px;"><?=$value['name']?></td>
                         <td style="text-align: center; min-width:150px;"><?=$value['price']?>$</td>
                         <td><?=$value['description']?></td>
-                        <form>
-                        <td><input style="max-width:129px;" type="number" value="<?=$value['quantity']?>" min="1" max="<?$value['quantity']?>"></td>
-                        </form>
+                        <form action="<?=App::config('url')?>games/set?id=<?=$value['id']?>" method="POST">
+                        <td><input style="min-width:129px;" type="number" name="newquan" value="<?=$value['quantity']?>" min="1" max="<?=$value['maxquan']?>"></td>
                         <td style="text-align:center"><?=$value['memory_required']?> GB</td>
                         <td style="text-align:center"><?=$value['console']?></td>
                         <td style="min-width:80px; text-align:center">
-                            <a href="<?=App::config('url')?>games/set?id=<?=$value['id']?>"> <i title="Set" class="fa fa-floppy-o"></i></a>
+                            <button type="submit" class="btn btn-primary"> <i title="Set" class="fa fa-floppy-o"></i></button>
                             <a href="<?=App::config('url')?>games/cart"><i title="Back" style="color:red; margin-left:10px;" class="fa fa-undo"></i></a>
+                            </form>
                         </td>
                     </tr>
+                    <?php $total = $total + $value['quantity'] * $value['price']; ?>
                     <?php endforeach;?>
                     <tr>
-                            <td style="text-align:center;"><a class="btn btn-success" href="<?=App::config('url')?>games/checkout">Checkout</a></td>
-                            <td style="text-align:center;"><a class="btn btn-danger" onclick="return confirm('Are you sure you want to clear the cart?');" href="<?=App::config('url')?>games/clear">Clear</a></td>
-                            <td colspan="5" align="right">Total</td>
-                            <td style="min-width:100px;" class="total" colspan="2"><b>$ 163.47</b>
-                            </td>
+                        <td style="text-align:center;"><a class="btn btn-success" href="<?=App::config('url')?>games/checkout">Checkout</a></td>
+                        <td style="text-align:center;"><a class="btn btn-danger" onclick="return confirm('Are you sure you want to clear the cart?');" href="<?=App::config('url')?>games/clear">Clear</a></td>
+                        <td colspan="5" align="right">Total</td>
+                        <td style="min-width:100px;" class="total" colspan="2"><b><?php echo number_format($total,2);?></b>
+                        </td>
                     </tr>
             </tbody>
         </table>
