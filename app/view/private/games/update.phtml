@@ -42,7 +42,7 @@
                         <td style="text-align:center;"><a class="btn btn-success" href="<?=App::config('url')?>games/checkout">Checkout</a></td>
                         <td style="text-align:center;"><a class="btn btn-danger" onclick="return confirm('Are you sure you want to clear the cart?');" href="<?=App::config('url')?>games/clear">Clear</a></td>
                         <td colspan="5" align="right">Total</td>
-                        <td style="min-width:100px;" class="total" colspan="2"><b><?php echo number_format($total,2);?></b>
+                        <td style="min-width:100px;" class="total" colspan="2"><b><?php echo number_format($total,2);?>$</b>
                         </td>
                     </tr>
             </tbody>

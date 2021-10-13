@@ -12,79 +12,44 @@
                 <div class="container px-5">
                     <h1 class="fw-bolder fs-5 mb-4">Upcoming game</h1>
                     <div class="card">
-                        <a href="#!"><img class="card-img-top" src="<?=App::config('url')?>public/img/preorder/codvan.jpg" alt="..." /></a>
+                        <a href="#!"><img class="card-img-top" src="<?=App::config('url')?>public/img/order/codvan.jpg" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted">January 1, 2021</div>
                             <h2 class="card-title">Call of Duty: Vanguard</h2>
                             <p class="card-text">Call of Duty: Vanguard is an upcoming 2021 first-person shooter video game developed by Sledgehammer Games and published by Activision.</p>
-                            <a class="btn btn-danger" href="#!">PRE-ORDER</a>
+                            <a class="btn btn-danger" href="#!">COMING SOON</a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
             <section class="py-5">
-                <div class="container px-5">
-                    <h2 class="fw-bolder fs-5 mb-4" style="text-align: center;">Newest games</h2>
-                    <div class="row gx-5">
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="<?=App::config('url')?>public/img/preorder/acval.jpg" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Game</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">Assassin's Creed Valhalla</div></a>
-                                    <p class="card-text mb-0">Assassin's Creed Valhalla is a 2020 action role-playing video game developed by Ubisoft Montreal and published by Ubisoft. It is the twelfth major installment in the Assassin's Creed series, and the successor to 2018's Assassin's Creed Odyssey.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                                <div class="fw-bold"><a class="btn btn-primary" href="#!">Add to cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="container px-5">
+                        <h2 class="fw-bolder fs-5 mb-4" style="text-align: center;">Newest games</h2>
+                        <div class="row gx-5">
+                            <?php foreach($games as $game):?>
+                        <div class="col-md-4">
+                        <h3><?=$game->name?></h3>
+                        <div class="card mb-4 box-shadow">
+                            <img class="games-img" src="<?=App::config('url')?>public/img/order/<?=$game->image?>" alt="Card image cap">
+                            <div class="card-body">
+                            <p class="card-text">Price: <?=$game->price?>$</p>
+                            <p class="card-text">Console: <?=$game->console?></p>
+                            <p class="card-text">Memory required: <?=$game->memory_required?> GB</p>
+                            <p class="card-text"><?=$game->description?></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <form action="<?=App::config('url')?>games/add" method="POST">
+                                    <input type="hidden" name="id" value="<?=$game->id?>">
+                                    <input style="margin:10px;" type="number" name="quantity" value="1" min="1" max="<?=$game->quantity?>" placeholder="Quantity" required>
+                                    <button type="submit" name="add" class="btn btn-primary">Add to Cart</button> 
+                                </form>
+                                <?php if(Request::isAdmin()): ?>
+                                <a href="<?=App::config('url')?>games/change?id=<?=$game->id?>"> <i title="Change" class="fas fa-2x fa-pencil-alt"></i></a>
+                                <?php endif;?>
                             </div>
-                        </div>
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="<?=App::config('url')?>public/img/preorder/rd2.jpg" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Game</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">Red Dead Redemption 2</div></a>
-                                    <p class="card-text mb-0">Red Dead Redemption 2 is a 2018 action-adventure game developed and published by Rockstar Games. The game is the third entry in the Red Dead series and is a prequel to the 2010 game Red Dead Redemption.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                            <a class="btn btn-primary" href="#!">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="<?=App::config('url')?>public/img/preorder/village.jpg" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Game</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">Resident Evil Village</div></a>
-                                    <p class="card-text mb-0">Resident Evil Village is a 2021 first-person survival horror game developed and published by Capcom. It is the sequel to Resident Evil 7: Biohazard</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                            <a class="btn btn-primary" href="#!">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <?php endforeach;?>
             </section>
     </div>

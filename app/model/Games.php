@@ -42,11 +42,20 @@ class Games
         $query->execute();
         return $query->fetchAll();
     }
-    //Get only first 3 games from DB for user to edit.
+    
     public static function readAdmin()
     {
         $conn = DB::connect();
         $query = $conn->prepare('select * from games');
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+
+    public static function readPreorder()
+    {
+        $conn = DB::connect();
+        $query = $conn->prepare('select * from games order by id desc limit 3;');
         $query->execute();
         
         return $query->fetchAll();

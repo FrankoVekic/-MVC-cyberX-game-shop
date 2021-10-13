@@ -29,6 +29,17 @@ order_date datetime,
 order_state varchar(100)
 );
 
+create table preorder(
+id int not null primary key auto_increment,
+name varchar(50) not null,
+price decimal(18,2) not null,
+description varchar(300),
+quantity int not null,
+memory_required int not null,
+console varchar(50) not null,
+image varchar(50)
+);
+
 create table game_order (
 id int not null primary key auto_increment,
 orders int not null,
@@ -81,4 +92,10 @@ The story takes place in Night City, an open world set in the Cyberpunk universe
 ("Mount & Blade II",59.99,10,58,'PC','mbb.jpg',"Mount & Blade II: Bannerlord is a strategy action role-playing video game developed and published 
 by TaleWorlds Entertainment. It is a prequel to Mount & Blade: Warband, a stand-alone expansion for the 2008 game Mount & Blade."),
 ('Mass Effect 3',69.99,10,63,'PC','mef.jpg',"Mass Effect Legendary Edition is a compilation of the video games in the Mass Effect trilogy: 
-Mass Effect, Mass Effect 2, and Mass Effect 3.");
+Mass Effect, Mass Effect 2, and Mass Effect 3."),
+("Assassin's Creed Valhalla",70.99,5,75,'PC','acval.jpg',"Assassin's Creed Valhalla is a 2020 action role-playing video game developed by
+ Ubisoft Montreal and published by Ubisoft. It is the twelfth major installment in the Assassin's Creed series."),
+("Red Dead Redemption 2",71.99,8,83,'PC','rd2.jpg',"Red Dead Redemption 2 is a action-adventure game developed and published by Rockstar Games."),
+("Resident Evil Village",65,10,60,'PS4','village.jpg',"Resident Evil Village is a 2021 first-person survival horror game developed and published
+ by Capcom. It is the sequel to Resident Evil 7: Biohazard.");
+ 
