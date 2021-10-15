@@ -24,7 +24,7 @@
                     <tr>
                     <td><img class="adminimg" src="<?=App::config('url')?>public/img/order/<?=$value['image']?>"></td>
                         <td style="min-width:150px;"><?=$value['name']?></td>
-                        <td style="text-align: center; min-width:150px;"><?=$value['price']?>$</td>
+                        <td style="text-align: center; min-width:150px;">$ <?=$value['price']?></td>
                         <td><?=$value['description']?></td>
                         <form action="<?=App::config('url')?>games/set?id=<?=$value['id']?>" method="POST">
                         <td><input style="min-width:129px;" type="number" name="newquan" value="<?=$value['quantity']?>" min="1" max="<?=$value['maxquan']?>"></td>

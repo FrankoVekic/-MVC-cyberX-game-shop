@@ -27,7 +27,7 @@
                 <?php foreach($games as $game):?>
                     <tr>
                         <td><?=$game->name?></td>
-                        <td style="text-align: right;"><?=$game->price?></td>
+                        <td style="text-align: right;">$<?=$game->price?></td>
                         <td style="max-width:200px;"><?=$game->description?></td>
                         <td style="text-align:center"><?=$game->quantity?></td>
                         <td style="text-align:center"><?=$game->memory_required?> GB</td>

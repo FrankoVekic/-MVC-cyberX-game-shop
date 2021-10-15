@@ -48,8 +48,8 @@ class App
         }
         else {
             //error page
-            echo 'Can not find what you are looking for' . 
-            $class . '->' . $method;
+            $view = new View();
+            $view->render('error');
         }
     }
 

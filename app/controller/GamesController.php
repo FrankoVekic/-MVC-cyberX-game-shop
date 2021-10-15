@@ -41,6 +41,175 @@ class GamesController extends AuthorizeController
         ]);
     }
 
+    public function pay()
+    {
+        if($this->checkName() && 
+           $this->checkCard() &&
+           $this->checkExpiry() &&
+           $this->checkCvv() &&
+           $this->checkAddress() &&
+           $this->checkCity() &&
+           $this->checkZipCode()
+           ){
+            unset($_SESSION['cart']);
+            $this->view->render($this->viewDir . 'cart',[
+                'message'=>'Thank you for purchasing from us!'
+            ]);
+        }else {
+
+            $this->view->render($this->viewDir . 'checkout',[
+                'message'=>$this->message
+            ]);
+        }
+    }
+
+    public function checkName()
+    {
+        if(!isset($_POST['name'])){
+            $this->message ="Name can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['name'])) === 0){
+            $this->message ="Name can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['name']))>50){
+            $this->message ="Max number of letters is 50";
+        }else {
+            return true;
+        }
+    }
+
+    public function checkCard()
+    {
+        if(!isset($_POST['card'])){
+            $this->message ="Card can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['card'])) === 0){
+            $this->message ="Card can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['card'])) != 16){
+            $this->message ="Invalid card number";
+            return false;
+         }
+         if(!preg_match('/^[0-9]*$/', $_POST['card'])){
+            $this->message ="Invalid card number";
+            return false;
+         }
+         return true;
+    }
+
+    public function checkExpiry()
+    {
+        if(!isset($_POST['expiry'])){
+            $this->message ="Expiry can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['expiry'])) === 0){
+            $this->message ="Expiry can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['expiry'])) != 4){
+            $this->message ="Invalid expiry date";
+            return false;
+         }
+         if(!preg_match('/^[0-9]*$/', $_POST['expiry'])){
+            $this->message ="Invalid expiry date";
+            return false;
+         }
+         return true;
+    }
+
+    public function checkCvv()
+    {
+        if(!isset($_POST['cvv'])){
+            $this->message ="CVV can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['cvv'])) === 0){
+            $this->message ="CVV can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['cvv'])) != 3){
+            $this->message ="Invalid CVV";
+            return false;
+         }
+         if(!preg_match('/^[0-9]*$/', $_POST['cvv'])){
+            $this->message ="Invalid CVV";
+            return false;
+         }
+         return true;
+    }
+
+    public function checkAddress()
+    {
+        if(!isset($_POST['address'])){
+            $this->message ="Address can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['address'])) === 0){
+            $this->message ="Address can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['address']))>50){
+            $this->message ="Max number of letters is 50";
+            return false;
+        }
+            return true;
+    }
+
+    public function checkCity()
+    {
+        if(!isset($_POST['city'])){
+            $this->message ="City can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['city'])) === 0){
+            $this->message ="City can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['city']))>30){
+            $this->message ="Invalid City";
+            return false;
+         }
+         return true;
+    }
+
+    public function checkZipCode()
+    {
+        if(!isset($_POST['zipcode'])){
+            $this->message ="Zip Code can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['zipcode'])) === 0){
+            $this->message ="Zip Code can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['zipcode']))!=5){
+            $this->message ="Invalid Zip Code";
+            return false;
+         }
+         if(!preg_match('/^[0-9]*$/', $_POST['zipcode'])){
+            $this->message ="Invalid Zip Code";
+            return false;
+         }
+         return true;
+    }
+
+    public function checkout()
+    {
+        if(!empty($_SESSION['cart'])){
+            $this->view->render($this->viewDir . 'checkout',[
+            'message'=>'Enter required data'
+            ]);
+        }else {
+            $this->view->render($this->viewDir . 'cart',[
+                'message'=>'Cart is empty.'
+            ]);
+        }
+    }
     public function cart()
     {
         if(empty($_SESSION['cart'])){

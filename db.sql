@@ -2,6 +2,8 @@ drop database if exists cyberx;
 create database cyberx default character set utf8mb4;
 use cyberx;
 
+//za online = alter database aurelije_cyberx default character set utf8mb4;
+
 create table games(
 id int not null primary key auto_increment,
 name varchar(50) not null,
