@@ -26,6 +26,16 @@ class Request
         . $_SESSION['authorized']->surname;
     }
 
+    public static function userName()
+    {
+        return $_SESSION['authorized']->name;
+    }
+
+    public static function userSurname()
+    {
+        return $_SESSION['authorized']->surname;
+    }
+
     public static function isAdmin()
     {
         if(isset($_SESSION['authorized'])){

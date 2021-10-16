@@ -28,7 +28,9 @@ create table orders (
 id int not null primary key auto_increment,
 buyer int,
 order_date datetime,
-order_state varchar(100)
+address varchar(50),
+city varchar(30),
+country varchar(30)
 );
 
 create table preorder(

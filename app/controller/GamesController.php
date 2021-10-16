@@ -6,6 +6,7 @@ class GamesController extends AuthorizeController
 
     private $game;
     private $message;
+    private $order;
 
     public function index()
     {
@@ -49,9 +50,13 @@ class GamesController extends AuthorizeController
            $this->checkCvv() &&
            $this->checkAddress() &&
            $this->checkCity() &&
-           $this->checkZipCode()
+           $this->checkZipCode() &&
+           $this->checkCountry()
+           
            ){
+            
             unset($_SESSION['cart']);
+            Checkout::order($_POST['buyer'],$_POST['order_date'],$_POST['address'],$_POST['city'],$_POST['country']);
             $this->view->render($this->viewDir . 'cart',[
                 'message'=>'Thank you for purchasing from us!'
             ]);
@@ -198,11 +203,29 @@ class GamesController extends AuthorizeController
          return true;
     }
 
+    public function checkCountry()
+    {
+        if(!isset($_POST['country'])){
+            $this->message ="Country can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['country'])) === 0){
+            $this->message ="Country can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['country']))>30){
+            $this->message ="Invalid Country";
+            return false;
+         }
+         return true;
+    }
     public function checkout()
     {
+        $date = date('Y-m-d H:i:s');
         if(!empty($_SESSION['cart'])){
             $this->view->render($this->viewDir . 'checkout',[
-            'message'=>'Enter required data'
+            'message'=>'Enter required data',
+            'date'=>$date
             ]);
         }else {
             $this->view->render($this->viewDir . 'cart',[
