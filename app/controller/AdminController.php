@@ -31,12 +31,18 @@ class AdminController extends AuthorizeController
                 $game->price = $nf->format($game->price);
         }
         */
-        $this->view->render($this->viewDir . 'index',[
-            'games'=>Games::readAdmin()]);
+        if(Request::isAdmin()){
+            $this->view->render($this->viewDir . 'index',[
+                'games'=>Games::readAdmin()]);
+        }
+        else {
+            $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
+        }
     } 
 
     public function add()
     {
+    
         $this->view->render($this->viewDir . 'new',[
             "game" =>$this->game,
             'message'=>'Enter required data.'
@@ -45,6 +51,7 @@ class AdminController extends AuthorizeController
 
     public function newGame()
     {
+        if(Request::isAdmin()){
         if(!$_POST){
             $this->add();
             return;
@@ -74,6 +81,10 @@ class AdminController extends AuthorizeController
             ]);
         }
     }
+    else {
+        $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
+    }
+}
 
     private function nameControl()
     {
@@ -194,6 +205,7 @@ class AdminController extends AuthorizeController
 
     public function change()
     {
+    if(Request::isAdmin()){
         $this->game = Games::findGame($_GET['id']);
         if($this->game==null){
             $this->index();
@@ -203,7 +215,10 @@ class AdminController extends AuthorizeController
             'message'=>'Change game data'
         ]);
         }
+    }else {
+        $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
     }
+}
     public function update()
     {
         if(!$_POST){

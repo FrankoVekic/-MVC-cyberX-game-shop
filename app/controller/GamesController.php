@@ -6,7 +6,6 @@ class GamesController extends AuthorizeController
 
     private $game;
     private $message;
-    private $order;
 
     public function index()
     {
@@ -55,8 +54,12 @@ class GamesController extends AuthorizeController
            
            ){
             
-            unset($_SESSION['cart']);
+            
             Checkout::order($_POST['buyer'],$_POST['order_date'],$_POST['address'],$_POST['city'],$_POST['country']);
+            foreach($_SESSION['cart'] as $game=>$value ){
+                Checkout::orderGame($value['id'],$value['quantity']);
+            }
+            unset($_SESSION['cart']);
             $this->view->render($this->viewDir . 'cart',[
                 'message'=>'Thank you for purchasing from us!'
             ]);

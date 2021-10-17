@@ -48,7 +48,7 @@ create table game_order (
 id int not null primary key auto_increment,
 orders int not null,
 games int not null,
-quanitity int
+quantity int
 );
 
 alter table game_order add foreign key (games) references games(id);
