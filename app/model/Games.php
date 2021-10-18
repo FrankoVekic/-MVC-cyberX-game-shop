@@ -61,17 +61,19 @@ class Games
         return $query->fetchAll();
     }
     //CRUD - U
-    public static function update($params)
+    public static function update($params,$img)
     {
         $conn = DB::connect();
-        $query = $conn->prepare('update games set
+
+        $query = $conn->prepare("update games set
          name=:name,
          price=:price,
          description=:description,
          quantity=:quantity,
          memory_required=:memory_required,
-         console=:console
-         where id=:id');
+         console=:console,
+         image='$img'
+         where id=:id");
          $query->execute($params);
     }
     //CRUD - D

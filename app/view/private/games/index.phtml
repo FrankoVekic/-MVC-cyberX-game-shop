@@ -24,9 +24,6 @@
                         <input style="margin:10px;" type="number" name="quantity" value="1" min="1" max="<?=$game->quantity?>" placeholder="Quantity" required>
                         <button type="submit" name="add" class="btn btn-primary">Add to Cart</button> 
                       </form>
-                      <?php if(Request::isAdmin()): ?>
-                      <a href="<?=App::config('url')?>games/change?id=<?=$game->id?>"> <i title="Change" class="fas fa-2x fa-pencil-alt"></i></a>
-                      <?php endif;?>
                   </div>
                 </div>
               </div>

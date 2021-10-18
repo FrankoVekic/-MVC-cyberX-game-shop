@@ -102,4 +102,5 @@ Mass Effect, Mass Effect 2, and Mass Effect 3."),
 ("Red Dead Redemption 2",71.99,8,83,'PC','rd2.jpg',"Red Dead Redemption 2 is a action-adventure game developed and published by Rockstar Games."),
 ("Resident Evil Village",65,10,60,'PS4','village.jpg',"Resident Evil Village is a 2021 first-person survival horror game developed and published
  by Capcom. It is the sequel to Resident Evil 7: Biohazard.");
+
  

@@ -4,6 +4,7 @@ class AdminController extends AuthorizeController
 {
 
     private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR;
+    private $imgDir = BP . 'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'order' . DIRECTORY_SEPARATOR;
 
     private $game;
     private $message;
@@ -199,6 +200,9 @@ class AdminController extends AuthorizeController
         }else {
             $id = $_GET['id'];
             Games::delete($id);
+            if(file_exists($this->imgDir . $_GET['id'] . '.jpg')){
+            unlink($this->imgDir . $_GET['id'] . '.jpg');
+            }
             $this->index();
         }
     }
@@ -236,7 +240,19 @@ class AdminController extends AuthorizeController
         && $this->consoleControl()
         )
         {
-            Games::update((array)($this->game));
+            $file = $_FILES['image']['name'];
+            if (!$file){
+                $img = $_SESSION['image'];
+                Games::update((array)($this->game),$img);
+                unset($_SESSION['image']);
+            }else {
+                $img = $this->game->id . '.jpg';
+                Games::update((array)($this->game),$img);
+        }
+            if(isset($_FILES['image'])){
+                move_uploaded_file($_FILES['image']['tmp_name'],
+                $this->imgDir . $this->game->id . '.jpg');
+            }
             $this->index();
         }
         else 
