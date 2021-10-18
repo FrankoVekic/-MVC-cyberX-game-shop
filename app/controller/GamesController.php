@@ -54,17 +54,21 @@ class GamesController extends AuthorizeController
            
            ){
             
-            
+        if(isset($_SESSION['cart'])){
             Checkout::order($_POST['buyer'],$_POST['order_date'],$_POST['address'],$_POST['city'],$_POST['country']);
-            foreach($_SESSION['cart'] as $game=>$value ){
-                Checkout::orderGame($value['id'],$value['quantity']);
+            foreach($_SESSION['cart'] as $game ){
+                Checkout::orderGame($game['id'],$game['quantity']);
             }
             unset($_SESSION['cart']);
             $this->view->render($this->viewDir . 'cart',[
                 'message'=>'Thank you for purchasing from us!'
             ]);
         }else {
-
+            $this->view->render($this->viewDir . 'checkout',[
+                'message'=>$this->message
+            ]);
+        }
+        }else {
             $this->view->render($this->viewDir . 'checkout',[
                 'message'=>$this->message
             ]);

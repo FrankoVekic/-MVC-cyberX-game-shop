@@ -130,11 +130,11 @@ class AdminController extends AuthorizeController
     private function descControl()
     {
         if(!isset($this->game->description)){
-            $this->message = "Name is required";
+            $this->message = "Description is required";
             return false;
         }
         if(strlen(trim($this->game->description)) === 0){
-            $this->message="Name is required";
+            $this->message="Description is required";
             return false;
         }
         if(strlen(trim($this->game->description))>2000){

@@ -1,3 +1,37 @@
-<div style="margin-top:150px; margin-bottom:500px;">
-Here come orders
+<div class="container">
+    <div style="margin-top:150px; margin-bottom:200px;">
+        <div class="grix-x">
+            <div class="cell large-6">
+                <h1 style="font-size: 2rem; text-align:center;"><?=$message?></h1>
+            </div>
+        </div>
+        <table class="table table-bordered" style="margin-top:15px;">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order date</th>
+                    <th>Buyer</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Game name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <?php foreach($orders as $order):?>
+                    <tr>
+                        <td style="min-width:150px;"><?=$order->id?></td>
+                        <td style="min-width:150px;"><?=$order->order_date?></td>
+                        <td style="min-width:150px;"><?=$order->buyer?></td>
+                        <td style="min-width:150px;"><?=$order->address?></td>
+                        <td style="min-width:150px;"><?=$order->city?></td>
+                        <td style="min-width:150px;"><?=$order->country?></td>
+                        <td style="min-width:150px;"><?=$order->name?></td>
+                        <td style="min-width:150px;"><?=$order->quantity?></td>
+                    </tr>
+                    <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
 </div>
