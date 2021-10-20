@@ -9,24 +9,23 @@ class OrdersController extends AuthorizeController
     public function index()
     {
         if(Request::isAdmin()){
-
-            $orders = Orders::checkOrdersBetter();
+            $orders = Orders::checkOrders();
             $this->goodOrders=[];
-            foreach($orders as $o){
-                if(!$this->orderExists($o->id)){
-                    $o->games=[];
-                    $g=new stdClass();
-                    $g->name=$o->name;
-                    $g->quantity = $o->quantity;
-                    $o->games[]=$g;
-                    $this->goodOrders[]=$o;
+            foreach($orders as $order){
+                if(!$this->orderExists($order->id)){
+                    $order->games=[];
+                    $game=new stdClass();
+                    $game->name=$order->name;
+                    $game->quantity = $order->quantity;
+                    $order->games[]=$game;
+                    $this->goodOrders[]=$order;
                 }else{
                     foreach($this->goodOrders as $go){                  
-                        if($o->id==$go->id){   
-                            $g=new stdClass();
-                            $g->name=$o->name;
-                            $g->quantity = $o->quantity;
-                            $go->games[]=$g;               
+                        if($order->id==$go->id){   
+                            $game=new stdClass();
+                            $game->name=$order->name;
+                            $game->quantity = $order->quantity;
+                            $go->games[]=$game;               
                             break;          
                         }                 
                     }

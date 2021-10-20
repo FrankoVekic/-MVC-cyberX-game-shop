@@ -1,0 +1,69 @@
+<div class="container" style="margin-top: 150px;">
+<div class="text-center my-4">
+    <h1>ER Diagram and Code</h1>
+        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="<?=App::config('url')?>public/img/about/db.jpg" alt="..." /></a>
+                        <div class="card-body">
+                            <h2 class="card-title">Code for creating database</h2>
+                            <a class="btn btn-primary" target="_blank" href="https://github.com/FrankoVekic/-MVC-cyberX-game-shop">GITHUB CODE</a>
+                        
+                            <hr>
+                            <p class="card-text"><code>create table games(
+                                id int not null primary key auto_increment,<br>
+                                name varchar(50) not null,<br>
+                                price decimal(18,2) not null,<br>
+                                description varchar(300),<br>
+                                quantity int not null,<br>
+                                memory_required int not null,<br>
+                                console varchar(50) not null,<br>
+                                image varchar(50)<br>
+                                );
+                                <br><br>
+                                create table users (
+                                id int not null primary key auto_increment,<br>
+                                email varchar(50) not null,<br>
+                                password char(60) not null,<br>
+                                name varchar(50) not null,<br>
+                                surname varchar(50) not null,<br>
+                                role varchar(10) not null<br>
+                                );
+                                <br><br>
+                                create table orders (<br>
+                                id int not null primary key auto_increment,<br>
+                                buyer int,<br>
+                                order_date datetime,<br>
+                                address varchar(50),<br>
+                                city varchar(30),<br>
+                                country varchar(30)<br>
+                                );
+                                <br><br>
+                                create table preorder(<br>
+                                id int not null primary key auto_increment,<br>
+                                name varchar(50) not null,<br>
+                                price decimal(18,2) not null,<br>
+                                description varchar(300),<br>
+                                quantity int not null,<br>
+                                memory_required int not null,<br>
+                                console varchar(50) not null,<br>
+                                image varchar(50)<br>
+                                );
+                                <br><br>
+                                create table game_order (<br>
+                                id int not null primary key auto_increment,<br>
+                                orders int not null,<br>
+                                games int not null,<br>
+                                quantity int<br>
+                                );
+                                <br><br>
+                                alter table game_order add foreign key (games) references games(id);<br>
+                                alter table game_order add foreign key (orders) references orders(id);<br>
+                                alter table orders add foreign key (buyer) references users(id);<br><br>
+                            </code></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -13,9 +13,9 @@ class IndexController extends Controller
         }
     }
 
-    public function aboutus()
+    public function erdiagram()
     {
-        $this->view->render('aboutus');
+        $this->view->render('erdiagram');
     }
 
     public function login()

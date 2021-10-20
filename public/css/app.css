@@ -67,4 +67,11 @@ footer{
   width: 100%;
 }
 
-  
+.my-custom-scrollbar {
+  position: relative;
+  max-height: 550px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
