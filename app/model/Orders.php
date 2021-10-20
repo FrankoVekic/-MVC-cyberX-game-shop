@@ -1,9 +1,6 @@
 <?php 
 
 class Orders{
-
-
-
    
     public static function checkOrders()
     {
@@ -17,22 +14,20 @@ class Orders{
         ");
         $query->execute();
         $orders = $query->fetchAll();
+    
 
-        //loše
-        foreach($orders as $o){
-            $query = $conn->prepare("
-            select  d.name, c.quantity 
-                from game_order c 
-                on c.orders = b.id
-                inner join games d 
-                on d.id = c.games where c.orders = :order;
-            ");
-            $query->execute();
-            $o->games=$query->fetchAll();
-        }
-        return $orders;
+    foreach($orders as $o){
+        $query = $conn->prepare('
+        select  d.name, c.quantity 
+        from game_order c 
+        inner join games d 
+        on d.id = c.games where c.orders = :order;
+        ');
+        $query->execute(['order'=>$o->id]);
+        $o->games=$query->fetchAll();
     }
-
+        return $orders;
+    }   
 
     public static function checkOrdersBetter()
     {

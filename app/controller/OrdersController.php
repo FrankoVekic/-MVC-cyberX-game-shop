@@ -3,7 +3,7 @@
 class OrdersController extends AuthorizeController
 {
     private $viewDir = 'private' . DIRECTORY_SEPARATOR . 'orders' . DIRECTORY_SEPARATOR;
-
+    
     private $goodOrders;
 
     public function index()
@@ -21,17 +21,17 @@ class OrdersController extends AuthorizeController
                     $o->games[]=$g;
                     $this->goodOrders[]=$o;
                 }else{
-                    foreach($this->goodOrders as $go){
-                        if($o->id==$go->id){
+                    foreach($this->goodOrders as $go){                  
+                        if($o->id==$go->id){   
                             $g=new stdClass();
                             $g->name=$o->name;
                             $g->quantity = $o->quantity;
-                            $o->games[]=$g;
-                        }
+                            $go->games[]=$g;               
+                            break;          
+                        }                 
                     }
                 }
             }
-
             $this->view->render($this->viewDir . 'index',[
                 'orders'=>$this->goodOrders,
                 'message'=>'Orders table'
@@ -40,7 +40,6 @@ class OrdersController extends AuthorizeController
         else {
             $this->view->render('private' . DIRECTORY_SEPARATOR . 'index');
         }
-        $this->view->render($this->viewDir . 'index');
     }
 
     private function orderExists($id)

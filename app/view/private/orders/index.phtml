@@ -20,17 +20,17 @@
             <tbody> 
                 <?php foreach($orders as $order):?>
                     <tr>
-                        <td style="min-width:150px;"><?=$order->id?></td>
+                        <td style="min-width:150px;"><?=$order->id?>.</td>
                         <td style="min-width:150px;"><?=$order->order_date?></td>
                         <td style="min-width:150px;"><?=$order->buyer?></td>
                         <td style="min-width:150px;"><?=$order->address?></td>
                         <td style="min-width:150px;"><?=$order->city?></td>
                         <td style="min-width:150px;"><?=$order->country?></td>
-                         <td style="min-width:150px;">
+                        <td style="min-width:150px;">
                          <ol>
                          <?php 
                          foreach($order->games as $game){
-                            echo '<li>' . $game->name . '(' . $game->quantity .  ')</li>';
+                            echo '<li>' . $game->name . ' (' . $game->quantity .  ')</li>';
                          }
                          ?>
                          </ol>
