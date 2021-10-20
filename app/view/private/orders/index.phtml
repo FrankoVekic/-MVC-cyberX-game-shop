@@ -14,8 +14,7 @@
                     <th>Address</th>
                     <th>City</th>
                     <th>Country</th>
-                    <th>Game name</th>
-                    <th>Quantity</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody> 
@@ -27,8 +26,15 @@
                         <td style="min-width:150px;"><?=$order->address?></td>
                         <td style="min-width:150px;"><?=$order->city?></td>
                         <td style="min-width:150px;"><?=$order->country?></td>
-                        <td style="min-width:150px;"><?=$order->name?></td>
-                        <td style="min-width:150px;"><?=$order->quantity?></td>
+                         <td style="min-width:150px;">
+                         <ol>
+                         <?php 
+                         foreach($order->games as $game){
+                            echo '<li>' . $game->name . '(' . $game->quantity .  ')</li>';
+                         }
+                         ?>
+                         </ol>
+                        </td>
                     </tr>
                     <?php endforeach;?>
             </tbody>
