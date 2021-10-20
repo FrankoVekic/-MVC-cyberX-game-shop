@@ -15,10 +15,6 @@ class Checkout
         $query->execute();
 
         $_SESSION['lastId'] = $conn->lastInsertId();
-
-
-
-
     }
 
     //find last inserted order id---
