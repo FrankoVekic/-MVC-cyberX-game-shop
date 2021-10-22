@@ -19,6 +19,7 @@ class AdminController extends AuthorizeController
         $this->game->quantity="0";
         $this->game->memory_required="0";
         $this->game->console=false;
+        $this->game->image='';
     }
 
     public function index() 
@@ -72,7 +73,11 @@ class AdminController extends AuthorizeController
             $this->game->price = str_replace(array('.', ','), array('', '.'), 
             $this->game->price);
             Games::create((array)($this->game));
-            $this->index();
+            $this->view->render($this->viewDir . 'index',[
+                'games'=>Games::readAdmin(),
+                'errorMsg'=> 'Game successfully added',
+                'color'=>'green'
+        ]);
         }
         else 
         {
@@ -199,11 +204,24 @@ class AdminController extends AuthorizeController
             $this->index();
         }else {
             $id = $_GET['id'];
-            Games::delete($id);
-            if(file_exists($this->imgDir . $_GET['id'] . '.jpg')){
-            unlink($this->imgDir . $_GET['id'] . '.jpg');
+            if(Games::checkRow($id)){
+                $this->view->render($this->viewDir . 'index',[
+                    'games'=>Games::readAdmin(),
+                    'errorMsg'=> 'Game can not be deleted.',
+                    'color'=>'red'
+            ]);
             }
-            $this->index();
+            else {
+                Games::delete($id);
+                if(file_exists($this->imgDir . $_GET['id'] . '.jpg')){
+                unlink($this->imgDir . $_GET['id'] . '.jpg');
+                }
+                $this->view->render($this->viewDir . 'index',[
+                    'games'=>Games::readAdmin(),
+                    'errorMsg'=> 'Game successfully deleted.',
+                    'color'=>'green'
+            ]);
+            }
         }
     }
 
@@ -257,7 +275,7 @@ class AdminController extends AuthorizeController
         }
         else 
         {
-            $this->view->render($this->viewDir . 'index',[
+            $this->view->render($this->viewDir . 'change',[
                 "game" =>$this->game,
                 'message'=>$this->message
             ]);

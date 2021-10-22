@@ -86,6 +86,21 @@ class Games
         }
     }
 
+    public static function checkRow($id)
+    {
+        $conn = DB::connect();
+        $query = $conn->prepare("select games from game_order where games = $id;");
+        $query->execute();
+        $exists = $query->fetch();
+
+        if($exists == null){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public static function findGame($id)
     {
         $conn = DB::connect();

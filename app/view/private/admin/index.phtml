@@ -4,6 +4,10 @@
             <div class="cell large-6">
                 <h1 style="font-size: 2rem; text-align:center;">CHANGE YOUR GAME COLLECTION</h1>
             </div>
+            <hr>
+            <div style="text-align:center; color:<?=$color?>">
+            <?php if(isset($errorMsg)){ echo '<h5>'. $errorMsg . '</h5>';}?>
+            </div>
         <div class="cell large-6" style="text-align:right; margin-top:20px;">
         <a href="<?=App::config('url')?>admin/add" class="btn btn-primary">
     Add a new game.

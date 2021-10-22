@@ -9,25 +9,25 @@
                 <div class="form-row">
                 <div class="form-group col-md-16">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" name="name" value="<?=$game->name?>" placeholder="Game name">
+                  <input type="text"  id="name" name="name" value="<?=$game->name?>" placeholder="Game name">
                 </div>
                 <div class="form-group col-md-16">
                   <label for="price">Price</label>
-                  <input type="text" class="form-control" id="price" value="<?=$game->price?>" name="price">
+                  <input type="text" id="price" value="<?=$game->price?>" name="price">
                 </div>
               </div>
               <div class="form-group col-md-16">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" value="<?=$game->description?>" name="description" placeholder="Enter game description">
+                <input type="text" id="description" value="<?=$game->description?>" name="description" placeholder="Enter game description">
               </div>
               <div class="form-group col-md-16">
                 <label for="quantity">Quantity</label>
-                <input type="text" class="form-control" id="quantity" value="<?=$game->quantity?>" name="quantity">
+                <input type="text" id="quantity" value="<?=$game->quantity?>" name="quantity">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-16">
                   <label for="memory_required">Required Free Space</label>
-                  <input type="text" class="form-control" id="memory_required" value="<?=$game->memory_required?>" name="memory_required">
+                  <input type="text" id="memory_required" value="<?=$game->memory_required?>" name="memory_required">
                 </div>
                 <div class="form-group col-md-4" style="margin-top:20px;">
                     <fieldset>
@@ -45,7 +45,7 @@
                 </div  class="form-group col-md-16">
                     <label for="image">Image</label>
                     <input type="file" name="image" value="<?=$game->image?>" id="image">
-                    <?php $_SESSION['image']= $game->image; ?>
+                    <?php if(isset($game->image)){ $_SESSION['image'] = $game->image; }?>
                 <div>
                 </div>
               </div>
