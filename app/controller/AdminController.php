@@ -227,7 +227,7 @@ class AdminController extends AuthorizeController
 
     public function change()
     {
-    if(Request::isAdmin()){
+    if(Request::isAdmin() && isset($_GET['id'])){
         $this->game = Games::findGame($_GET['id']);
         if($this->game==null){
             $this->index();

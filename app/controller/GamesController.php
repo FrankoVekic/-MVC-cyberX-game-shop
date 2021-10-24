@@ -43,7 +43,8 @@ class GamesController extends AuthorizeController
 
     public function pay()
     {
-        if($this->checkName() && 
+        if($this->checkName() &&
+           $this->checkSurname() && 
            $this->checkCard() &&
            $this->checkExpiry() &&
            $this->checkCvv() &&
@@ -90,8 +91,33 @@ class GamesController extends AuthorizeController
         }else {
             return true;
         }
+        if(!preg_match("/^[a-zA-Z]*$/" , $_POST['name'])){
+            $this->message ="Name can only contain letters.";
+            return false;
+        }
     }
 
+    public function checkSurname()
+    {
+        if(!isset($_POST['surname'])){
+            $this->message ="Surname can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['surname'])) === 0){
+            $this->message ="Surname can't be empty.";
+            return false;
+        }
+        if(strlen(trim($_POST['surname']))>50){
+            $this->message ="Max number of letters is 50";
+        }
+        if(!preg_match("/^[a-zA-Z]*$/" , $_POST['surname'])){
+            $this->message ="Surname can only contain letters.";
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     public function checkCard()
     {
         if(!isset($_POST['card'])){
@@ -180,6 +206,10 @@ class GamesController extends AuthorizeController
         }
         if(strlen(trim($_POST['city'])) === 0){
             $this->message ="City can't be empty.";
+            return false;
+        }
+        if(!preg_match("/^[a-zA-Z]*$/" , $_POST['city'])){
+            $this->message ="City can only contain letters.";
             return false;
         }
         if(strlen(trim($_POST['city']))>30){
