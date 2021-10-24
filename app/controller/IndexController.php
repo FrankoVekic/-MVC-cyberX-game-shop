@@ -50,6 +50,8 @@ class IndexController extends Controller
         } 
 
         //registerView($name,$surname,$email,$message)
+        $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+        $number = preg_match('@[0-9]@', $_POST['password']);
 
         //here we know if email and password are set
         if(strlen(trim($_POST['name'])) ===0){
@@ -67,7 +69,11 @@ class IndexController extends Controller
         if(strlen(trim($_POST['password'])) ===0){
             $this->registerView($_POST['name'],$_POST['surname'],$_POST['email'],'Password is required');
             return;
-     }
+        }
+        if(!$uppercase || !$number || strlen($_POST['password']) < 6){
+            $this->registerView($_POST['name'],$_POST['surname'],$_POST['email'],'Password  must contain at least one capital letter, one number and at least 6 characters');
+            return;
+        }
         if($_POST['password'] != $_POST['confirmPassword']){
             $this->registerView($_POST['name'],$_POST['surname'],$_POST['email'],'Passwords must match.');
             return;

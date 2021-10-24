@@ -207,7 +207,7 @@ class AdminController extends AuthorizeController
             if(Games::checkRow($id)){
                 $this->view->render($this->viewDir . 'index',[
                     'games'=>Games::readAdmin(),
-                    'errorMsg'=> 'Game can not be deleted.',
+                    'errorMsg'=> 'The game that is in the orders cannot be deleted',
                     'color'=>'red'
             ]);
             }
@@ -218,7 +218,7 @@ class AdminController extends AuthorizeController
                 }
                 $this->view->render($this->viewDir . 'index',[
                     'games'=>Games::readAdmin(),
-                    'errorMsg'=> 'Game successfully deleted.',
+                    'errorMsg'=> 'Game successfully deleted',
                     'color'=>'green'
             ]);
             }
